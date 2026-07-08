@@ -44,8 +44,28 @@
         <nav class="space-y-2">
             <div onclick="showTab('home')" id="nav-home" class="nav-link active">Begrüssung & Aktuelles</div>
             <div onclick="showTab('training')" id="nav-training" class="nav-link">Jugend & Erwachsene</div>
-            <div onclick="showTab('turnier')" id="nav-turnier" class="nav-link">Turnier 2026 / Open</div>
-            <div onclick="showTab('links')" id="nav-links" class="nav-link">Links & Kontakt</div>
+            <div class="mb-6">
+  <!-- Das Wort "Turniere" ist jetzt der direkte Auslöser (mit einem kleinen Pfeil) -->
+  <h3 onclick="toggleTournaments()" class="font-bold text-lg cursor-pointer hover:text-gray-200 transition flex items-center gap-2">
+    <span>▶</span> Turniere
+  </h3>
+  
+  <!-- Die Liste klappt direkt hier drunter auf (eingerückt und dezent) -->
+  <div id="turnier-liste" style="display: none;" class="flex flex-col gap-2 mt-3 ml-6">
+    <button onclick="openForm('Ausschreibung Jugend GP Lyss')" class="text-left text-gray-200 hover:text-gray-200 transition">
+      Asusschreibung Jugend GP Lyss
+    </button>
+    
+    <button onclick="openForm('Club Turnier intern')" class="text-left text-gray-200 hover:text-gray-200 transition">
+      Club Turnier intern
+    </button>
+    
+    <button onclick="openForm('Dezember-Plauschturnier')" class="text-left text-gray-200 hover:text-gray-200 transition">
+      Dezember-Plauschturnier
+    </button>
+  </div>
+</div>
+            <div onclick="showTab('links')" id="nav-links" class="nav-link">Links & Kontakte</div>
         </nav>
     </aside>
 
@@ -58,11 +78,24 @@
 
             <div id="home" class="content-section active space-y-16">
                 <section>
-                    <h1 class="text-5xl font-extrabold text-blue-900 mb-6">Willkommen beim Club Schachclub Lyss- Seeland</h1>
+                    <h1 class="text-5xl font-extrabold text-blue-900 mb-6">Willkommen beim Schachclub Lyssseeland</h1>
                     <div class="bg-gray-50 p-6 rounded-xl border-l-8 border-blue-900 shadow-sm">
                         <p class="text-xl">Spiellokal: <strong>Restaurant Weisses Kreuz</strong></p>
                         <p class="text-gray-600 mt-2 italic text-lg">Schauen Sie an unserem Abend vorbei und spielen Sie eine Partie mit uns!</p>
                     </div>
+
+               <section>
+
+                <div class="bg-white border p-6 rounded-xl shadow-sm text-center">
+    <h3 class="font-bold text-xl mb-4">Dokumente & Resultate</h3>
+    <p class="text-gray-600 mb-6">Alle aktuellen Ausschreibungen, Reglemente und Turnierresultate finden Sie in unserem Datei-Ordner.</p>
+    
+    <a href="" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-500 transition-colors">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+        Zum Dokumenten-Ordner öffnen
+    </a>
+</div>
+
                 </section>
 
                 <section>
@@ -89,7 +122,7 @@
                         <p class="font-bold text-xl">Donnerstags: 18:15 – 19:30</p>
                         <p class="text-gray-600 italic">Schulhaus Kirchenfeld in Lyss</p>
                         <div class="mt-6 p-3 bg-white rounded border border-blue-200 text-blue-800 font-bold">
-                            Offener Termin: 16. August 2026
+                            Offener Termin: Berner-Jugend-Schach-Grandprix 15. August 2026
                         </div>
                     </div>
                     <div class="p-8 bg-white border border-gray-200 rounded-2xl">
@@ -101,22 +134,8 @@
             </div>
 	    <div>
             <div id="turnier" class="content-section space-y-12">
-                <h2 class="text-4xl font-bold text-blue-900 italic">Turnier 2026 & Lysser Open</h2>
+                <h2 class="text-4xl font-bold text-blue-900 italic">Turniere 2026</h2>
                 
-                <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800 font-medium">
-                    Bereich für externe Ergänzungen
-                </div>
-
-                <div class="bg-white border p-6 rounded-xl shadow-sm text-center">
-    <h3 class="font-bold text-xl mb-4">Dokumente & Resultate</h3>
-    <p class="text-gray-600 mb-6">Alle aktuellen Ausschreibungen, Reglemente und Turnierresultate finden Sie in unserem Datei-Ordner.</p>
-    
-    <a href="https://drive.google.com/drive/folders/1MMwjS83e9pg9-fiJ4-nXJL6qcZHBRLVc?usp=drive_link" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-500 transition-colors">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-        Zum Dokumenten-Ordner öffnen
-    </a>
-</div>
-
                    <form id="turnier-form" class="space-y-5">
         <div class="grid md:grid-cols-2 gap-5">
             <div>
@@ -219,5 +238,23 @@
             window.scrollTo(0, 0);
         }
     </script>
+<script>
+function toggleTournaments() {
+  const liste = document.getElementById('turnier-liste');
+  if (liste.style.display === 'none') {
+    liste.style.display = 'flex';
+  } else {
+    liste.style.display = 'none';
+  }
+}
+
+function openForm(turnierName) {
+  const formularBereich = document.getElementById('formular-bereich');
+  formularBereich.style.display = 'block';
+  document.getElementById('formular-titel').innerText = 'Anmeldung für: ' + turnierName;
+  document.getElementById('gewaehltes_turnier').value = turnierName;
+  formularBereich.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
 </body>
 </html>
