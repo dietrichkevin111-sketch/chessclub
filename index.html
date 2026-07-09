@@ -7,17 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { display: flex; min-height: 100vh; background-color: #ffffff; color: #111827; overflow-x: hidden; }
-        
-        /* Sidebar fixiert */
+
         .sidebar { width: 260px; position: fixed; left: 0; top: 0; bottom: 0; background-color: #1e3a8a; color: white; z-index: 50; padding: 2rem; }
         
-        /* Inhaltsbereich rechts */
         .main-wrapper { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
         
-        /* Header */
         .top-nav { position: sticky; top: 0; background: rgba(243, 244, 246, 0.8); backdrop-filter: blur(12px); height: 70px; z-index: 40; width: 100%; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; padding: 0 2rem; }
         
-        /* Sektionen initial verstecken außer Home */
         .content-section { display: none; animation: fadeIn 0.3s ease-in-out; }
         .content-section.active { display: block; }
 
@@ -45,15 +41,13 @@
             <div onclick="showTab('home')" id="nav-home" class="nav-link active">Begrüssung & Aktuelles</div>
             <div onclick="showTab('training')" id="nav-training" class="nav-link">Jugend & Erwachsene</div>
             <div class="mb-6">
-  <!-- Das Wort "Turniere" ist jetzt der direkte Auslöser (mit einem kleinen Pfeil) -->
   <h3 onclick="toggleTournaments()" class="font-bold text-lg cursor-pointer hover:text-gray-200 transition flex items-center gap-2">
     <span>▶</span> Turniere
   </h3>
   
-  <!-- Die Liste klappt direkt hier drunter auf (eingerückt und dezent) -->
   <div id="turnier-liste" style="display: none;" class="flex flex-col gap-2 mt-3 ml-6">
     <button onclick="openForm('Ausschreibung Jugend GP Lyss')" class="text-left text-gray-200 hover:text-gray-200 transition">
-      Ausschreibung Jugend GP Lyss
+      Asusschreibung Jugend GP Lyss
     </button>
     
     <button onclick="openForm('Club Turnier intern')" class="text-left text-gray-200 hover:text-gray-200 transition">
@@ -84,7 +78,6 @@
                         <p class="text-gray-600 mt-2 italic text-lg">Schauen Sie an unserem Abend vorbei und spielen Sie eine Partie mit uns!</p>
                     </div>
 
-                <section>
 
                 <div class="bg-white border p-6 rounded-xl shadow-sm text-center">
     <h3 class="font-bold text-xl mb-4">Dokumente & Resultate</h3>
@@ -122,7 +115,7 @@
                         <p class="font-bold text-xl">Donnerstags: 18:15 – 19:30</p>
                         <p class="text-gray-600 italic">Schulhaus Kirchenfeld in Lyss</p>
                         <div class="mt-6 p-3 bg-white rounded border border-blue-200 text-blue-800 font-bold">
-                            Offener Termin: Berner-Jugend-Schach-Grandprix 15. August 2026
+                            Offener Termin: Berner-Jugend-Schach-Grandprix 15. August 2026 -> bereits 50% ausgelastet
                         </div>
                     </div>
                     <div class="p-8 bg-white border border-gray-200 rounded-2xl">
@@ -212,20 +205,16 @@
     </script>
     <script>
         function showTab(tabId) {
-            // Alle Sektionen verstecken
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
-            // Gewünschte Sektion zeigen
             document.getElementById(tabId).classList.add('active');
 
-            // Navigation Links stylen
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             document.getElementById('nav-' + tabId).classList.add('active');
 
-            // Titel im Header anpassen
             const titles = {
                 'home': 'Dashboard',
                 'training': 'Trainingsplan',
@@ -234,10 +223,60 @@
             };
             document.getElementById('page-title').innerText = titles[tabId];
             
-            // Nach oben scrollen
             window.scrollTo(0, 0);
         }
     </script>
+ <div id="formular-bereich" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
+  
+  <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-11/12 max-w-3xl relative border-t-4 border-blue-600">
+    
+    <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold leading-none">
+      &times;
+    </button>
+    
+    <h3 id="formular-titel" class="text-3xl font-bold mb-6 text-center text-white">Anmeldung</h3>
+    
+    <form id="turnier-form">
+      
+      <input type="text" name="honeypot" style="display:none">
+      <input type="hidden" id="gewaehltes_turnier" name="gewaehltes_turnier">
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-300 mb-1">Vorname *</label>
+        <input type="text" name="vorname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-300 mb-1">Nachname *</label>
+        <input type="text" name="nachname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5 mb-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-1">Telefon *</label>
+          <input type="tel" name="telefon" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-1">E-Mail Adresse *</label>
+          <input type="email" name="email" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <label class="block text-sm font-medium text-gray-300 mb-1">Offizieller Teamname</label>
+        <input type="text" name="teamname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+      </div>
+
+      <div class="flex items-center justify-center">
+        <button id="submit-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg shadow-md transition duration-300 transform hover:scale-105" type="submit">
+          Verbindlich anmelden
+        </button>
+      </div>
+      
+    </form>
+  </div>
+</div>
+    
 <script>
 function toggleTournaments() {
   const liste = document.getElementById('turnier-liste');
@@ -250,10 +289,15 @@ function toggleTournaments() {
 
 function openForm(turnierName) {
   const formularBereich = document.getElementById('formular-bereich');
-  formularBereich.style.display = 'block';
-  document.getElementById('formular-titel').innerText = 'Anmeldung für: ' + turnierName;
+  
+  formularBereich.style.display = 'flex';
+  
+  document.getElementById('formular-titel').innerText = 'Anmeldung: ' + turnierName;
   document.getElementById('gewaehltes_turnier').value = turnierName;
-  formularBereich.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeForm() {
+  document.getElementById('formular-bereich').style.display = 'none';
 }
 </script>
 </body>
