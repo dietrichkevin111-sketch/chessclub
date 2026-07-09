@@ -115,7 +115,7 @@
                         <p class="font-bold text-xl">Donnerstags: 18:15 – 19:30</p>
                         <p class="text-gray-600 italic">Schulhaus Kirchenfeld in Lyss</p>
                         <div class="mt-6 p-3 bg-white rounded border border-blue-200 text-blue-800 font-bold">
-                            Offener Termin: Berner-Jugend-Schach-Grandprix 15. August 2026 -> bereits 50% ausgelastet
+                            Offener Termin: Berner-Jugend-Schach-Grandprix 15. August 2026
                         </div>
                     </div>
                     <div class="p-8 bg-white border border-gray-200 rounded-2xl">
@@ -186,23 +186,35 @@
     </div>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        emailjs.init("gu8W3JDXXjeiSCjPQ"); 
-        document.getElementById('turnier-form').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            if (this.honeypot.value !== "") return;
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = 'Wird gesendet...';
-            emailjs.sendForm('club-anmeldungen@outlook', 'template_rnj1opj', this)
-                .then(function() {
-                    btn.innerText = 'Erfolgreich angemeldet!';
-                    btn.classList.replace('bg-blue-600', 'bg-green-600');
-                    document.getElementById('turnier-form').reset();
-                }, function(error) {
-                    alert('Fehler beim Senden. Bitte versuche es später erneut.');
-                    btn.innerText = 'Kostenpflichtig anmelden';
-                });
-        });
-    </script>
+emailjs.init("gu8W3JDXXjeiSCjPQ"); 
+
+function sendEmail(event) {
+  event.preventDefault(); 
+
+  if (event.target.honeypot.value !== "") return;
+
+  const btn = document.getElementById('submit-btn');
+  btn.innerText = 'Wird gesendet...';
+
+  emailjs.sendForm('club-anmeldungen@outlook', 'template_rnj1opj', event.target)
+    .then(function() {
+      btn.innerText = 'Erfolgreich angemeldet!';
+      btn.classList.replace('bg-blue-600', 'bg-green-600'); 
+      event.target.reset(); 
+
+      setTimeout(function() {
+        closeForm();
+        btn.innerText = 'Verbindlich anmelden';
+        btn.classList.replace('bg-green-600', 'bg-blue-600');
+      }, 2000);
+
+    }, function(error) {
+      alert('Fehler beim Senden. Bitte versuche es später erneut.');
+      btn.innerText = 'Verbindlich anmelden';
+      console.log("EmailJS Fehler:", error); 
+    });
+}
+</script>
     <script>
         function showTab(tabId) {
             document.querySelectorAll('.content-section').forEach(section => {
@@ -236,7 +248,7 @@
     
     <h3 id="formular-titel" class="text-3xl font-bold mb-6 text-center text-white">Anmeldung</h3>
     
-    <form id="turnier-form">
+    <form id="turnier-form" onsubmit="sendEmail(event)">
       
       <input type="text" name="honeypot" style="display:none">
       <input type="hidden" id="gewaehltes_turnier" name="gewaehltes_turnier">
