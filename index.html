@@ -7,25 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { display: flex; min-height: 100vh; background-color: #ffffff; color: #111827; overflow-x: hidden; }
-
         .sidebar { width: 260px; position: fixed; left: 0; top: 0; bottom: 0; background-color: #1e3a8a; color: white; z-index: 50; padding: 2rem; }
-        
         .main-wrapper { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
-        
         .top-nav { position: sticky; top: 0; background: rgba(243, 244, 246, 0.8); backdrop-filter: blur(12px); height: 70px; z-index: 40; width: 100%; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; padding: 0 2rem; }
-        
         .content-section { display: none; animation: fadeIn 0.3s ease-in-out; }
         .content-section.active { display: block; }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .nav-link { cursor: pointer; transition: all 0.2s; border-radius: 0.5rem; padding: 0.75rem; display: block; }
         .nav-link:hover { background-color: rgba(255,255,255,0.1); }
         .nav-link.active { background-color: #3b82f6; font-bold: bold; }
-
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; position: relative; height: auto; }
@@ -34,31 +27,21 @@
     </style>
 </head>
 <body>
-
     <aside class="sidebar">
         <div class="text-2xl font-black mb-10 border-b border-blue-400 pb-4 italic uppercase tracking-tighter">Schachclub Lyss-Seeland</div>
         <nav class="space-y-2">
             <div onclick="showTab('home')" id="nav-home" class="nav-link active">Begrüssung & Aktuelles</div>
             <div onclick="showTab('training')" id="nav-training" class="nav-link">Jugend & Erwachsene</div>
             <div class="mb-6">
-  <h3 onclick="toggleTournaments()" class="font-bold text-lg cursor-pointer hover:text-gray-200 transition flex items-center gap-2">
-    <span>▶</span> Turniere
-  </h3>
-  
-  <div id="turnier-liste" style="display: none;" class="flex flex-col gap-2 mt-3 ml-6">
-    <button onclick="openForm('Ausschreibung Jugend GP Lyss')" class="text-left text-gray-200 hover:text-gray-200 transition">
-      Asusschreibung Jugend GP Lyss
-    </button>
-    
-    <button onclick="openForm('Club Turnier intern')" class="text-left text-gray-200 hover:text-gray-200 transition">
-      Club Turnier intern
-    </button>
-    
-    <button onclick="openForm('Dezember-Plauschturnier')" class="text-left text-gray-200 hover:text-gray-200 transition">
-      Dezember-Plauschturnier
-    </button>
-  </div>
-</div>
+                <h3 onclick="toggleTournaments()" class="font-bold text-lg cursor-pointer hover:text-gray-200 transition flex items-center gap-2">
+                    <span>▶</span> Turniere
+                </h3>
+                <div id="turnier-liste" style="display: none;" class="flex flex-col gap-2 mt-3 ml-6">
+                    <button onclick="alert('Dieses Turnier ist noch nicht verfügbar zur Anmeldung.')" class="text-left text-gray-200 hover:text-gray-200 transition">
+                        Lysser Open
+                    </button>
+                </div>
+            </div>
             <div onclick="showTab('links')" id="nav-links" class="nav-link">Links & Kontakte</div>
         </nav>
     </aside>
@@ -69,7 +52,6 @@
         </header>
 
         <main class="max-w-4xl w-full mx-auto p-8 md:p-12">
-
             <div id="home" class="content-section active space-y-16">
                 <section>
                     <h1 class="text-5xl font-extrabold text-blue-900 mb-6">Willkommen beim Schachclub Lyssseeland</h1>
@@ -77,156 +59,106 @@
                         <p class="text-xl">Spiellokal: <strong>Restaurant Weisses Kreuz</strong></p>
                         <p class="text-gray-600 mt-2 italic text-lg">Schauen Sie an unserem Abend vorbei und spielen Sie eine Partie mit uns!</p>
                     </div>
-
-
-                <div class="bg-white border p-6 rounded-xl shadow-sm text-center">
-    <h3 class="font-bold text-xl mb-4">Dokumente & Resultate</h3>
-    <p class="text-gray-600 mb-6">Alle aktuellen Ausschreibungen, Reglemente und Turnierresultate finden Sie in unserem Datei-Ordner.</p>
-    
-    <a href="https://drive.google.com/drive/folders/1MMwjS83e9pg9-fiJ4-nXJL6qcZHBRLVc?usp=drive_link" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-500 transition-colors">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-        Zum Dokumenten-Ordner öffnen
-    </a>
-</div>
-
+                    <div class="bg-white border p-6 rounded-xl shadow-sm text-center mt-8">
+                        <h3 class="font-bold text-xl mb-4">Dokumente & Resultate</h3>
+                        <p class="text-gray-600 mb-6">Alle aktuellen Ausschreibungen, Reglemente und Turnierresultate finden Sie in unserem Datei-Ordner.</p>
+                        <a href="https://drive.google.com/drive/folders/1MMwjS83e9pg9-fiJ4-nXJL6qcZHBRLVc?usp=drive_link" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-500 transition-colors">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                            Zum Dokumenten-Ordner öffnen
+                        </a>
+                    </div>
                 </section>
-
                 <section>
                     <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Aktuelles vom Klub</h2>
                     <div class="p-6 bg-white border rounded-xl shadow-sm">
                         <h3 class="font-bold text-blue-800 text-xl mb-3">Generalversammlung</h3>
                         <ul class="list-disc ml-5 space-y-2 text-gray-700">
                             <li>Keine Wechsel im Vorstand</li>
-                            <li>Matthias Stucki und Peter Raymond zu Ehrenmitgliedern gewählt - 50-jährige Mitgliedschaft</span> beim Schachclub Lyss</li>
-                           <li>Erhöhung Aktivmitgliederbeiträge um 10.- (Grund: SBB Beitrag)</li>
+                            <li>Matthias Stucki und Peter Raymond zu Ehrenmitgliedern gewählt - 50-jährige Mitgliedschaft beim Schachclub Lyss</li>
+                            <li>Erhöhung Aktivmitgliederbeiträge um 10.- (Grund: SBB Beitrag)</li>
                         </ul>
                     </div>
-                    <p class="text-gray-400 mt-4 italic text-sm">Platzhalter für weitere Einträge...</p>
                 </section>
             </div>
 
             <div id="training" class="content-section space-y-8">
                 <h2 class="text-4xl font-bold text-blue-900">Jugend & Erwachsene</h2>
-                <p class="text-lg text-gray-600 leading-relaxed">Die Förderung unserer Schachjugend liegt uns sehr am Herzen. Wir kümmern uns um die Ausbildung unserer Kinder und Jugendlichen.</p>
-                
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="p-8 bg-blue-50 rounded-2xl border border-blue-100">
                         <h3 class="text-2xl font-bold text-blue-900 mb-4">Jugend</h3>
                         <p class="font-bold text-xl">Donnerstags: 18:15 – 19:30</p>
                         <p class="text-gray-600 italic">Schulhaus Kirchenfeld in Lyss</p>
+                	<p class="mt-4 text-gray-700">Die Förderung unserer Schachjugend liegt uns sehr am Herzen. Wir kümmern uns um die Ausbildung unserer Kinder und Jugendlichen.</p>
                         <div class="mt-6 p-3 bg-white rounded border border-blue-200 text-blue-800 font-bold">
-                            Offener Termin: Berner-Jugend-Schach-Grandprix 15. August 2026, bereits 50% ausgelastet.
+                            Nächster Termin: Berner-Jugend-Schach-Grandprix 15. August 2026, bereits 50% ausgelastet.
                         </div>
                     </div>
                     <div class="p-8 bg-white border border-gray-200 rounded-2xl">
                         <h3 class="text-2xl font-bold text-gray-800 mb-4">Erwachsene</h3>
                         <p class="font-bold text-xl">Donnerstags: 20:00 – 23:30</p>
                         <p class="text-gray-600 italic">Restaurant Weisses Kreuz</p>
+                        <p class="mt-4 text-gray-700">Immer donnerstags treffen wir uns ab 20 Uhr zum Trainieren und Spielen . Melden Sie sich und schauen Sie vorbei!</p>
                     </div>
                 </div>
             </div>
-	    <div>
+
             <div id="turnier" class="content-section space-y-12">
                 <h2 class="text-4xl font-bold text-blue-900 italic">Turniere 2026</h2>
-                
-                   <form id="turnier-form" class="space-y-5">
-        <div class="grid md:grid-cols-2 gap-5">
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1">Vorname *</label>
-                <input type="text" name="vorname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-blue-500">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1">Nachname *</label>
-                <input type="text" name="nachname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-blue-500">
-            </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-5">
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1">Telefon *</label>
-                <input type="tel" name="telefon" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-blue-500">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-300 mb-1">E-Mail Adresse *</label>
-                <input type="email" name="email" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-blue-500">
-            </div>
-        </div>
-
-        <div>
-            <label class="block text-sm font-medium text-gray-300 mb-1">Offizieller Teamname *</label>
-            <input type="text" name="teamname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-blue-500">
-        </div>
-
-        <input type="text" name="honeypot" style="display:none">
-
-        <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded transition-colors mt-4">
-            Kostenpflichtig anmelden
-        </button>
-    </form>
-                </div>
-
                 <div class="pt-8 border-t">
-                    <p class="text-gray-400 italic">Archiv: Austragungen 2010 - 2025.</p>
+                    <p class="text-gray-400 italic">Archiv: Austragung 2010 - 2025.</p>
                 </div>
-            </div> <div id="links" class="content-section">
+            </div> 
+
+            <div id="links" class="content-section">
                 <h2 class="text-3xl font-bold text-gray-800 mb-8">Links & Kontakt</h2>
                 <div class="space-y-6">
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Nationaler Verband</a>
-                        <a href="#" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Partnerclub</a>
+                        <a href="https://www.seelandhotel.ch/de/" target="_blank" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Hotel Restaurant Weisses Kreuz</a>
+                        <a href="https://new.swisschess.dev/de/home" target="_blank" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Neue SSB Seite</a>
                     </div>
                     <div class="p-6 bg-blue-50 rounded-lg inline-block">
                         <p class="text-sm text-blue-600 font-bold mb-1 uppercase">E-Mail Kontakt</p>
-                        <p class="text-xl font-mono">club-anmeldungen [at] outlook.com</p>
+                        <p class="text-xl font-mono">club-anmeldungen@outlook.com</p>
                     </div>
                 </div>
-            </div>
-
+            </div>     
         </main>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-emailjs.init("gu8W3JDXXjeiSCjPQ"); 
+        emailjs.init("gu8W3JDXXjeiSCjPQ"); 
 
-function sendEmail(event) {
-  event.preventDefault(); 
+        function sendEmail(event) {
+            event.preventDefault(); 
+            if (event.target.honeypot.value !== "") return;
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Wird gesendet...';
+            emailjs.sendForm('club-anmeldungen@outlook', 'template_rnj1opj', event.target)
+            .then(function() {
+                btn.innerText = 'Erfolgreich angemeldet!';
+                btn.classList.replace('bg-blue-600', 'bg-green-600'); 
+                event.target.reset(); 
+                setTimeout(function() {
+                    closeForm();
+                    btn.innerText = 'Verbindlich anmelden';
+                    btn.classList.replace('bg-green-600', 'bg-blue-600');
+                }, 2000);
+            }, function(error) {
+                alert('Fehler beim Senden. Bitte versuche es später erneut.');
+                btn.innerText = 'Verbindlich anmelden';
+            });
+        }
 
-  if (event.target.honeypot.value !== "") return;
-
-  const btn = document.getElementById('submit-btn');
-  btn.innerText = 'Wird gesendet...';
-
-  emailjs.sendForm('club-anmeldungen@outlook', 'template_rnj1opj', event.target)
-    .then(function() {
-      btn.innerText = 'Erfolgreich angemeldet!';
-      btn.classList.replace('bg-blue-600', 'bg-green-600'); 
-      event.target.reset(); 
-
-      setTimeout(function() {
-        closeForm();
-        btn.innerText = 'Verbindlich anmelden';
-        btn.classList.replace('bg-green-600', 'bg-blue-600');
-      }, 2000);
-
-    }, function(error) {
-      alert('Fehler beim Senden. Bitte versuche es später erneut.');
-      btn.innerText = 'Verbindlich anmelden';
-      console.log("EmailJS Fehler:", error); 
-    });
-}
-</script>
-    <script>
         function showTab(tabId) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
             });
             document.getElementById(tabId).classList.add('active');
-
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
             document.getElementById('nav-' + tabId).classList.add('active');
-
             const titles = {
                 'home': 'Dashboard',
                 'training': 'Trainingsplan',
@@ -234,83 +166,62 @@ function sendEmail(event) {
                 'links': 'Kontakt & Links'
             };
             document.getElementById('page-title').innerText = titles[tabId];
-            
             window.scrollTo(0, 0);
         }
+
+        function toggleTournaments() {
+            const liste = document.getElementById('turnier-liste');
+            if (liste.style.display === 'none') {
+                liste.style.display = 'flex';
+            } else {
+                liste.style.display = 'none';
+            }
+        }
+
+        function openForm(turnierName) {
+            const formularBereich = document.getElementById('formular-bereich');
+            formularBereich.style.display = 'flex';
+            document.getElementById('formular-titel').innerText = 'Anmeldung: ' + turnierName;
+            document.getElementById('gewaehltes_turnier').value = turnierName;
+        }
+
+        function closeForm() {
+            document.getElementById('formular-bereich').style.display = 'none';
+        }
     </script>
- <div id="formular-bereich" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
-  
-  <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-11/12 max-w-3xl relative border-t-4 border-blue-600">
-    
-    <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold leading-none">
-      &times;
-    </button>
-    
-    <h3 id="formular-titel" class="text-3xl font-bold mb-6 text-center text-white">Anmeldung</h3>
-    
-    <form id="turnier-form" onsubmit="sendEmail(event)">
-      
-      <input type="text" name="honeypot" style="display:none">
-      <input type="hidden" id="gewaehltes_turnier" name="gewaehltes_turnier">
 
-      <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-300 mb-1">Vorname *</label>
-        <input type="text" name="vorname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
-      </div>
-
-      <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-300 mb-1">Nachname *</label>
-        <input type="text" name="nachname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-5 mb-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Telefon *</label>
-          <input type="tel" name="telefon" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+    <div id="formular-bereich" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
+        <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-11/12 max-w-3xl relative border-t-4 border-blue-600">
+            <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold leading-none">&times;</button>
+            <h3 id="formular-titel" class="text-3xl font-bold mb-6 text-center text-white">Anmeldung</h3>
+            <form id="turnier-form" onsubmit="sendEmail(event)">
+                <input type="text" name="honeypot" style="display:none">
+                <input type="hidden" id="gewaehltes_turnier" name="gewaehltes_turnier">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Vorname *</label>
+                    <input type="text" name="vorname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Nachname *</label>
+                    <input type="text" name="nachname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                </div>
+                <div class="grid md:grid-cols-2 gap-5 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">SSB-Code *</label>
+                        <input type="tel" name="ssb-code" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">E-Mail Adresse *</label>
+                        <input type="email" name="email" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <button id="submit-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg shadow-md transition duration-300 transform hover:scale-105" type="submit">
+                        Verbindlich anmelden
+                    </button>
+                </div>
+            </form>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">E-Mail Adresse *</label>
-          <input type="email" name="email" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
-        </div>
-      </div>
-
-      <div class="mb-8">
-        <label class="block text-sm font-medium text-gray-300 mb-1">Offizieller Teamname</label>
-        <input type="text" name="teamname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
-      </div>
-
-      <div class="flex items-center justify-center">
-        <button id="submit-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg shadow-md transition duration-300 transform hover:scale-105" type="submit">
-          Verbindlich anmelden
-        </button>
-      </div>
-      
-    </form>
-  </div>
-</div>
-    
-<script>
-function toggleTournaments() {
-  const liste = document.getElementById('turnier-liste');
-  if (liste.style.display === 'none') {
-    liste.style.display = 'flex';
-  } else {
-    liste.style.display = 'none';
-  }
-}
-
-function openForm(turnierName) {
-  const formularBereich = document.getElementById('formular-bereich');
-  
-  formularBereich.style.display = 'flex';
-  
-  document.getElementById('formular-titel').innerText = 'Anmeldung: ' + turnierName;
-  document.getElementById('gewaehltes_turnier').value = turnierName;
-}
-
-function closeForm() {
-  document.getElementById('formular-bereich').style.display = 'none';
-}
-</script>
+    </div>
 </body>
 </html>
