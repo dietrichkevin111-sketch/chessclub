@@ -154,7 +154,7 @@
             if (event.target.honeypot.value !== "") return;
             const btn = document.getElementById('submit-btn');
             btn.innerText = 'Wird gesendet...';
-            emailjs.sendForm('club-anmeldungen@outlook', 'template_rnj1opj', event.target)
+            emailjs.sendForm('service_8ffyw5b', 'template_rnj1opj', event.target)
             .then(function() {
                 btn.innerText = 'Bitte überprüfen Sie Ihren Mails!';
                 btn.classList.replace('bg-blue-600', 'bg-green-600'); 
