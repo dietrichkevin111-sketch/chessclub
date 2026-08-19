@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club Portal - Verwaltung</title>
+    <title>Schachclub Lyss Seeland</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { display: flex; min-height: 100vh; background-color: #ffffff; color: #111827; overflow-x: hidden; }
-        .sidebar { width: 260px; position: fixed; left: 0; top: 0; bottom: 0; background-color: #1e3a8a; color: white; z-index: 50; padding: 2rem; }
+        /* Sidebar angepasst für Flexbox, um Logo nach unten zu drücken */
+        .sidebar { width: 260px; position: fixed; left: 0; top: 0; bottom: 0; background-color: #1e3a8a; color: white; z-index: 50; padding: 2rem; display: flex; flex-direction: column; }
         .main-wrapper { margin-left: 260px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
         .top-nav { position: sticky; top: 0; background: rgba(243, 244, 246, 0.8); backdrop-filter: blur(12px); height: 70px; z-index: 40; width: 100%; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; padding: 0 2rem; }
         .content-section { display: none; animation: fadeIn 0.3s ease-in-out; }
@@ -28,44 +29,41 @@
 </head>
 <body>
     <aside class="sidebar">
-        <div class="text-2xl font-black mb-10 border-b border-blue-400 pb-4 italic uppercase tracking-tighter">Schachclub Lyss-Seeland</div>
-        <nav class="space-y-2">
-            <div onclick="showTab('home')" id="nav-home" class="nav-link active">Begrüssung & Aktuelles</div>
-            <div onclick="showTab('training')" id="nav-training" class="nav-link">Jugend & Erwachsene</div>
-            <div class="mb-6">
-                <h3 onclick="toggleTournaments()" class="font-bold text-lg cursor-pointer hover:text-gray-200 transition flex items-center gap-2">
-                    <span>▶</span> Turniere
-                </h3>
-                <div id="turnier-liste" style="display: none;" class="flex flex-col gap-2 mt-3 ml-6">
-                    <button onclick="alert('Dieses Turnier ist noch nicht verfügbar zur Anmeldung.')" class="text-left text-gray-200 hover:text-gray-200 transition">
-                        Lysser Open
-                    </button>
-                </div>
-            </div>
-            <div onclick="showTab('links')" id="nav-links" class="nav-link">Links & Kontakte</div>
-        </nav>
+        <!-- Oberer Bereich Sidebar Navigation -->
+        <div>
+            <div class="text-2xl font-black mb-10 border-b border-blue-400 pb-4 italic uppercase tracking-tighter">Schachclub Lyss-Seeland</div>
+            <nav class="space-y-2">
+                <div onclick="showTab('home')" id="nav-home" class="nav-link active">Begrüssung & Aktuelles</div>
+                <div onclick="showTab('training')" id="nav-training" class="nav-link">Jugend & Erwachsene</div>
+                <div onclick="showTab('dokumente')" id="nav-dokumente" class="nav-link">Dokumente</div>
+                <div onclick="showTab('turnier')" id="nav-turnier" class="nav-link">Turniere</div>
+                <div onclick="showTab('links')" id="nav-links" class="nav-link">Links & Kontakte</div>
+            </nav>
+        </div>
+        
+        <!-- Unterer Bereich Sidebar Logo B -->
+        <div class="mt-auto pt-8">
+            <img src="B Hintergrund Weiss - Logo farbig.png" alt="Logo Schachclub Lyss-Seeland" class="w-full h-auto rounded-lg shadow-md bg-white p-2">
+        </div>
     </aside>
 
     <div class="main-wrapper">
         <header class="top-nav">
-            <span id="page-title" class="text-sm font-bold text-gray-500 uppercase tracking-widest">Dashboard</span>
+            <span id="page-title" class="text-sm font-bold text-gray-500 uppercase tracking-widest">Home</span>
         </header>
 
         <main class="max-w-4xl w-full mx-auto p-8 md:p-12">
             <div id="home" class="content-section active space-y-16">
                 <section>
-                    <h1 class="text-5xl font-extrabold text-blue-900 mb-6">Willkommen beim Schachclub Lyss-Seeland</h1>
+                    <!-- Flex-Container für Überschrift und Logo C -->
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
+                        <h1 class="text-5xl font-extrabold text-blue-900 leading-tight">Willkommen beim Schachclub Lyss-Seeland</h1>
+                        <img src="C Hintergrund Weiss - schwarz-weiss.png" alt="Logo Schwarz-Weiss" class="w-20 md:w-24 h-auto flex-shrink-0 object-contain">
+                    </div>
+                    
                     <div class="bg-gray-50 p-6 rounded-xl border-l-8 border-blue-900 shadow-sm">
                         <p class="text-xl">Spiellokal: <strong>Restaurant Weisses Kreuz</strong></p>
                         <p class="text-gray-600 mt-2 italic text-lg">Schauen Sie an unserem Abend vorbei und spielen Sie eine Partie mit uns!</p>
-                    </div>
-                    <div class="bg-white border p-6 rounded-xl shadow-sm text-center mt-8">
-                        <h3 class="font-bold text-xl mb-4">Dokumente & Resultate</h3>
-                        <p class="text-gray-600 mb-6">Alle aktuellen Ausschreibungen, Reglemente und Turnierresultate finden Sie in unserem Datei-Ordner.</p>
-                        <a href="https://drive.google.com/drive/folders/1MMwjS83e9pg9-fiJ4-nXJL6qcZHBRLVc?usp=drive_link" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-bold rounded hover:bg-blue-500 transition-colors">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                            Zum Dokumenten-Ordner öffnen
-                        </a>
                     </div>
                 </section>
                 <section>
@@ -82,15 +80,14 @@
             </div>
 
             <div id="training" class="content-section space-y-8">
-                <h2 class="text-4xl font-bold text-blue-900">Jugend & Erwachsene</h2>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="p-8 bg-blue-50 rounded-2xl border border-blue-100">
-                        <h3 class="text-2xl font-bold text-blue-900 mb-4">Jugend</h3>
+                        <h3 class="text-2xl font-bold text-grey-800 mb-4">Jugendtraining</h3>
                         <p class="font-bold text-xl">Donnerstags: 18:15 – 19:30</p>
                         <p class="text-gray-600 italic">Schulhaus Kirchenfeld in Lyss</p>
-                	<p class="mt-4 text-gray-700">Die Förderung unserer Schachjugend liegt uns sehr am Herzen. Wir kümmern uns um die Ausbildung unserer Kinder und Jugendlichen.</p>
+                        <p class="mt-4 text-gray-700">Die Förderung unserer Schachjugend liegt uns sehr am Herzen. Wir kümmern uns um die Ausbildung unserer Kinder und Jugendlichen.</p>
                         <div class="mt-6 p-3 bg-white rounded border border-blue-200 text-blue-800 font-bold">
-                            Nächster Termin: Berner-Jugend-Schach-Grandprix 15. August 2026, bereits 100% ausgelastet. Keine Anmeldungen mehr möglich.
+                            Nächste Termine: Berner Jugend-Grandprix 5. September 2026, SK Köniz Bubenberg und 24. Oktober 2026, Kinderschachclub Naters/DSSP.
                         </div>
                     </div>
                     <div class="p-8 bg-white border border-gray-200 rounded-2xl">
@@ -102,8 +99,30 @@
                 </div>
             </div>
 
+            <div id="dokumente" class="content-section space-y-8">
+                <div class="bg-white border p-6 rounded-xl shadow-sm">
+                    <h2 class="font-bold text-3xl text-gray-800 mb-6 border-b pb-2">Ausschreibungen, Trainingsplan, Resultate und weitere Inhalte</h2>
+                    <div class="w-full h-96 rounded-lg overflow-hidden border border-gray-200 shadow-inner">
+                        <iframe 
+                            src="https://drive.google.com/embeddedfolderview?id=1MMwjS83e9pg9-fiJ4-nXJL6qcZHBRLVc#grid" 
+                            class="w-full h-full border-0">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
             <div id="turnier" class="content-section space-y-12">
                 <h2 class="text-4xl font-bold text-blue-900 italic">Turniere 2026</h2>
+                
+                <div class="p-6 bg-blue-50 border border-blue-100 rounded-xl">
+                    <p class="text-lg text-blue-900 font-medium mb-4">Melden Sie sich für ein Turnier an. Jetzt das Anmeldeformular erhalten.</p>
+                    <select id="turnier-auswahl" onchange="handleTurnierSelection(this)" class="w-full md:w-1/2 p-3 bg-white border border-gray-300 rounded text-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+                        <option value="">Turnier auswählen...</option>
+                        <option value="Open 2026">Lysser Open</option>
+                        <option value="Lysser JGP">Lysser GP</option>
+                    </select>
+                </div>
+
                 <div class="pt-8 border-t">
                     <p class="text-gray-400 italic">Archiv: Austragung 2010 - 2025.</p>
                 </div>
@@ -115,10 +134,11 @@
                     <div class="flex flex-wrap gap-4">
                         <a href="https://www.seelandhotel.ch/de/" target="_blank" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Hotel Restaurant Weisses Kreuz</a>
                         <a href="https://new.swisschess.dev/de/home" target="_blank" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Neue SSB Seite</a>
+			            <a href="https://www.bernerschach.com/" target="_blank" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Bernische Schachvereinigung</a>
                     </div>
                     <div class="p-6 bg-blue-50 rounded-lg inline-block">
                         <p class="text-sm text-blue-600 font-bold mb-1 uppercase">E-Mail Kontakt</p>
-                        <p class="text-xl font-mono">club-anmeldungen@outlook.com</p>
+                        <p class="text-xl font-mono">stucki.goldbach@bluewin.ch</p>
                     </div>
                 </div>
             </div>     
@@ -136,7 +156,7 @@
             btn.innerText = 'Wird gesendet...';
             emailjs.sendForm('club-anmeldungen@outlook', 'template_rnj1opj', event.target)
             .then(function() {
-                btn.innerText = 'Erfolgreich angemeldet!';
+                btn.innerText = 'Bitte überprüfen Sie Ihren Mails!';
                 btn.classList.replace('bg-blue-600', 'bg-green-600'); 
                 event.target.reset(); 
                 setTimeout(function() {
@@ -159,22 +179,26 @@
                 link.classList.remove('active');
             });
             document.getElementById('nav-' + tabId).classList.add('active');
+            
             const titles = {
-                'home': 'Dashboard',
-                'training': 'Trainingsplan',
-                'turnier': 'Turnier-Zentrum',
+                'home': 'Home',
+                'training': 'Jugend & Erwachsene',
+                'dokumente': 'Dokumente',
+                'turnier': 'Turniere',
                 'links': 'Kontakt & Links'
             };
             document.getElementById('page-title').innerText = titles[tabId];
             window.scrollTo(0, 0);
         }
 
-        function toggleTournaments() {
-            const liste = document.getElementById('turnier-liste');
-            if (liste.style.display === 'none') {
-                liste.style.display = 'flex';
-            } else {
-                liste.style.display = 'none';
+        function handleTurnierSelection(selectElement) {
+            const auswahl = selectElement.value;
+            if (auswahl === 'Lysser JGP') {
+                alert('Dieses Turnier ist zurzeit nicht verfügbar');
+                selectElement.value = ''; 
+            } else if (auswahl === 'Lysser Open') {
+                openForm('Lysser Open');
+                selectElement.value = ''; 
             }
         }
 
@@ -197,25 +221,35 @@
             <form id="turnier-form" onsubmit="sendEmail(event)">
                 <input type="text" name="honeypot" style="display:none">
                 <input type="hidden" id="gewaehltes_turnier" name="gewaehltes_turnier">
+                
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Vorname *</label>
-                    <input type="text" name="vorname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Fidenummer *</label>
+                    <input type="text" name="fidenummer" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
                 </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Nachname *</label>
-                    <input type="text" name="nachname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
-                </div>
+                
                 <div class="grid md:grid-cols-2 gap-5 mb-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">SSB-Code *</label>
-                        <input type="tel" name="ssb-code" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Vorname *</label>
+                        <input type="text" name="vorname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Name *</label>
+                        <input type="text" name="nachname" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5 mb-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1">E-Mail Adresse *</label>
                         <input type="email" name="email" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Telefon *</label>
+                        <input type="tel" name="telefon" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                    </div>
                 </div>
-                <div class="flex items-center justify-center">
+
+                <div class="flex items-center justify-center mt-6">
                     <button id="submit-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg shadow-md transition duration-300 transform hover:scale-105" type="submit">
                         Verbindlich anmelden
                     </button>
