@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="pt-8 border-t">
-                    <p class="text-gray-400 italic">Archiv: Austragung 2010 - 2025.</p>
+                    <p class="text-gray-400 italic">Archiv: Austragung 2010 -</p>
                 </div>
             </div> 
 
@@ -159,6 +159,10 @@
                 btn.innerText = 'Bitte überprüfen Sie Ihren Mails!';
                 btn.classList.replace('bg-blue-600', 'bg-green-600'); 
                 event.target.reset(); 
+                
+                // Formular-Zustand zurücksetzen (Fidenummer-Feld)
+                resetFideField();
+
                 setTimeout(function() {
                     closeForm();
                     btn.innerText = 'Verbindlich anmelden';
@@ -211,6 +215,31 @@
 
         function closeForm() {
             document.getElementById('formular-bereich').style.display = 'none';
+            document.getElementById('turnier-form').reset();
+            resetFideField();
+        }
+
+        // Neue Funktion für das Fidenummer-Feld
+        function toggleFide(checkbox) {
+            const fideInput = document.getElementById('fidenummer-input');
+            if (checkbox.checked) {
+                fideInput.value = 'Keine vorhanden';
+                fideInput.readOnly = true;
+                fideInput.classList.replace('text-white', 'text-gray-400');
+                fideInput.classList.replace('bg-gray-800', 'bg-gray-700');
+            } else {
+                fideInput.value = '';
+                fideInput.readOnly = false;
+                fideInput.classList.replace('text-gray-400', 'text-white');
+                fideInput.classList.replace('bg-gray-700', 'bg-gray-800');
+            }
+        }
+
+        function resetFideField() {
+            const fideInput = document.getElementById('fidenummer-input');
+            fideInput.readOnly = false;
+            fideInput.classList.remove('text-gray-400', 'bg-gray-700');
+            fideInput.classList.add('text-white', 'bg-gray-800');
         }
     </script>
 
@@ -224,7 +253,13 @@
                 
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-300 mb-1">Fidenummer *</label>
-                    <input type="text" name="fidenummer" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                    <input type="text" id="fidenummer-input" name="fidenummer" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500 transition-colors">
+                    
+                    <!-- Neue Checkbox für Fidenummer -->
+                    <div class="mt-3 flex items-center">
+                        <input type="checkbox" id="no-fide" onchange="toggleFide(this)" class="w-4 h-4 text-blue-600 rounded bg-gray-800 border-gray-600 cursor-pointer">
+                        <label for="no-fide" class="ml-2 text-sm text-gray-300 cursor-pointer hover:text-white transition">Ich habe (noch) keine Fidenummer</label>
+                    </div>
                 </div>
                 
                 <div class="grid md:grid-cols-2 gap-5 mb-4">
@@ -244,8 +279,8 @@
                         <input type="email" name="email" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Telefon *</label>
-                        <input type="tel" name="telefon" required class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Telefon (optional)</label>
+                        <input type="tel" name="telefon" class="w-full p-3 bg-gray-800 border border-gray-700 rounded text-white focus:border-blue-500">
                     </div>
                 </div>
 
