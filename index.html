@@ -99,16 +99,56 @@
                 </div>
             </div>
 
-            <div id="dokumente" class="content-section space-y-8">
-                <div class="bg-white border p-6 rounded-xl shadow-sm">
-                    <h2 class="font-bold text-3xl text-gray-800 mb-6 border-b pb-2">Ausschreibungen, Trainingsplan, Resultate und weitere Inhalte</h2>
-                    <div class="w-full h-96 rounded-lg overflow-hidden border border-gray-200 shadow-inner">
-                        <iframe 
-                            src="https://drive.google.com/embeddedfolderview?id=1MMwjS83e9pg9-fiJ4-nXJL6qcZHBRLVc#grid" 
-                            class="w-full h-full border-0">
-                        </iframe>
-                    </div>
+            <div id="dokumente" class="content-section space-y-6">
+                <!-- Info-Box -->
+                <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg shadow-sm">
+                    <p class="text-blue-900 font-bold mb-1">Wichtiger Hinweis zur Nutzung</p>
+                    <p class="text-blue-800 text-sm"><strong>Um sich für ein Turnier anzumelden, gehen Sie auf unserer Internetseite auf den Reiter Turniere und füllen Sie das Anmeldeformular aus.</strong><br>Sie können alle untenstehenden Dokumente direkt ansehen oder herunterladen (Doppelklick auf die Datei). <br><strong>Bitte ignorieren Sie den "Anmelden"-Button oben rechts, welcher beim Öffnen der Dokumente erscheint.</strong></p>
                 </div>
+
+                <h2 class="font-bold text-3xl text-gray-800 border-b pb-2 mt-8 mb-6">Ordner & Archive</h2>
+
+                <!-- KACHEL-LAYOUT FÜR ORDNER (Grid) -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- Ordner 1: Allgemeines -->
+                    <div class="bg-white border p-6 rounded-xl shadow-sm flex flex-col">
+                        <h3 class="font-bold text-xl text-gray-800 mb-2 border-b pb-2">Allgemeines</h3>
+                        <p class="text-gray-600 mb-4 text-sm flex-grow">Trainingsplan und weitere Inhalte.</p>
+                        <div class="w-full h-[250px] rounded-lg overflow-hidden border border-gray-300 shadow-inner mt-auto">
+                            <iframe 
+                                src="https://drive.google.com/embeddedfolderview?id=1MMwjS83e9pg9-fiJ4-nXJL6qcZHBRLVc#grid" 
+                                class="w-full h-full border-0">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Ordner 2: Lysser Open -->
+                    <div class="bg-white border p-6 rounded-xl shadow-sm flex flex-col">
+                        <h3 class="font-bold text-xl text-gray-800 mb-2 border-b pb-2">Lysser Open 2026</h3>
+                        <p class="text-gray-600 mb-4 text-sm flex-grow">Alle aktuellen Dokumente vom Lysser Open 2026.</p>
+                        <div class="w-full h-[250px] rounded-lg overflow-hidden border border-gray-300 shadow-inner mt-auto">
+                            <iframe 
+                                src="https://drive.google.com/embeddedfolderview?id=1CJ-7QXTZpBG08_QpRu-VZR4SHV9qwxBN#grid" 
+                                class="w-full h-full border-0">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Ordner 3: Jugend GP -->
+                    <div class="bg-white border p-6 rounded-xl shadow-sm flex flex-col">
+                        <h3 class="font-bold text-xl text-gray-800 mb-2 border-b pb-2">Lysser Jugend GP 2026</h3>
+                        <p class="text-gray-600 mb-4 text-sm flex-grow">Alle aktuellen Dokumente vom Lysser Jugend GP 2026.</p>
+                        <div class="w-full h-[250px] rounded-lg overflow-hidden border border-gray-300 shadow-inner mt-auto">
+                            <iframe 
+                                src="https://drive.google.com/embeddedfolderview?id=1sXQc0XIF3dTtswj7_m0VCjqaXgUWOxfv#grid" 
+                                class="w-full h-full border-0">
+                            </iframe>
+                        </div>
+                    </div>
+
+                  
+                </div> 
             </div>
 
             <div id="turnier" class="content-section space-y-12">
@@ -118,7 +158,7 @@
                     <p class="text-lg text-blue-900 font-medium mb-4">Melden Sie sich für ein Turnier an. Jetzt das Anmeldeformular erhalten.</p>
                     <select id="turnier-auswahl" onchange="handleTurnierSelection(this)" class="w-full md:w-1/2 p-3 bg-white border border-gray-300 rounded text-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
                         <option value="">Turnier auswählen...</option>
-                        <option value="Open 2026">Open 2026</option>
+                        <option value="Lysser Open 2026">Lysser Open 2026</option>
                         <option value="Lysser JGP">Lysser JGP</option>
                     </select>
                 </div>
@@ -200,8 +240,8 @@
             if (auswahl === 'Lysser JGP') {
                 alert('Dieses Turnier ist zurzeit nicht verfügbar');
                 selectElement.value = ''; 
-            } else if (auswahl === 'Open 2026') {
-                openForm('Open 2026');
+            } else if (auswahl === 'Lysser Open 2026') {
+                openForm('Lysser Open 2026');
                 selectElement.value = ''; 
             }
         }
