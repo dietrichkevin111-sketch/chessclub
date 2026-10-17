@@ -87,7 +87,7 @@
                         <p class="text-gray-600 italic">Schulhaus Kirchenfeld in Lyss</p>
                         <p class="mt-4 text-gray-700">Die Förderung unserer Schachjugend liegt uns sehr am Herzen. Wir kümmern uns um die Ausbildung unserer Kinder und Jugendlichen.</p>
                         <div class="mt-6 p-3 bg-white rounded border border-blue-200 text-blue-800 font-bold">
-                            Nächste Termine: Berner Jugend-Grandprix 5. September 2026, SK Köniz Bubenberg und 24. Oktober 2026, Kinderschachclub Naters/DSSP.
+                            Nächste Termine: 24. Oktober 2026, Kinderschachclub Naters/DSSP.
                         </div>
                     </div>
                     <div class="p-8 bg-white border border-gray-200 rounded-2xl">
@@ -106,7 +106,7 @@
                     <p class="text-blue-800 text-sm"><strong>Um sich für ein Turnier anzumelden, gehen Sie auf unserer Internetseite auf den Reiter Turniere und füllen Sie das Anmeldeformular aus.</strong><br>Sie können alle untenstehenden Dokumente direkt ansehen oder herunterladen (Doppelklick auf die Datei). <br><strong>Bitte ignorieren Sie den "Anmelden"-Button oben rechts, welcher beim Öffnen der Dokumente erscheint.</strong></p>
                 </div>
 
-                <h2 class="font-bold text-3xl text-gray-800 border-b pb-2 mt-8 mb-6">Ordner & Archive</h2>
+                <h2 class="font-bold text-3xl text-gray-800 border-b pb-2 mt-8 mb-6">Allgemeines, Lysser Open und Lysser Jugend GP</h2>
 
                 <!-- KACHEL-LAYOUT FÜR ORDNER (Grid) -->
                 <div class="grid md:grid-cols-2 gap-6">
@@ -153,21 +153,21 @@
 
             <div id="turnier" class="content-section space-y-12">
                 <h2 class="text-4xl font-bold text-blue-900 italic">Turniere 2026</h2>
-                
+            
                 <div class="p-6 bg-blue-50 border border-blue-100 rounded-xl">
-                    <p class="text-lg text-blue-900 font-medium mb-4">Melden Sie sich für ein Turnier an. Jetzt das Anmeldeformular erhalten.</p>
-                    <select id="turnier-auswahl" onchange="handleTurnierSelection(this)" class="w-full md:w-1/2 p-3 bg-white border border-gray-300 rounded text-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition">
+                    <p class="text-lg text-blue-900 font-medium mb-4">Jetzt das Anmeldeformular unten erhalten. Melden Sie sich unten für ein Turnier an.</p>
+	    </div>
+                    <select id="turnier-auswahl" onchange="handleTurnierSelection(this)" class="w-full md:w-1/2 p-3 bg-[#D4AF37] border border-[#E6C200] rounded text-gray-900 focus:border-[#CCAC00] focus:ring-2 focus:ring-[#FFD700]/50
+outline-none transition">
                         <option value="">Turnier auswählen...</option>
                         <option value="Lysser Open 2026">Lysser Open 2026</option>
                         <option value="Lysser JGP">Lysser JGP</option>
                     </select>
-                </div>
 
-                <div class="pt-8 border-t">
-                    <p class="text-gray-400 italic">Archiv: Austragung 2010 -</p>
-                </div>
-            </div> 
-
+		<div class="p-6 bg-blue-50 border border-blue-100 rounded-xl">
+		    <p class="text-lg text-blue-900 font-medium mb-4">Unter dem Abschnitt Dokumente befinden sich die Turnierresultate der jeweiligen Turniere. Alle Resultate liegen ausschliesslich dort bereit.</p>
+            </div>
+	</div>
             <div id="links" class="content-section">
                 <h2 class="text-3xl font-bold text-gray-800 mb-8">Links & Kontakt</h2>
                 <div class="space-y-6">
@@ -179,11 +179,15 @@
                     <div class="p-6 bg-blue-50 rounded-lg inline-block">
                         <p class="text-sm text-blue-600 font-bold mb-1 uppercase">E-Mail Kontakt</p>
                         <p class="text-xl font-mono">stucki.goldbach@bluewin.ch</p>
-                    </div>
-                </div>
-            </div>     
-        </main>
-    </div>
+		        </div>
+		    </div>
+		</div>
+            </div>
+	</div>
+    </main>
+    
+  
+              
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
@@ -238,10 +242,10 @@
         function handleTurnierSelection(selectElement) {
             const auswahl = selectElement.value;
             if (auswahl === 'Lysser JGP') {
-                alert('Dieses Turnier ist zurzeit nicht verfügbar');
+                alert('Dieses Turnier ist zurzeit nicht verfügbar.');
                 selectElement.value = ''; 
             } else if (auswahl === 'Lysser Open 2026') {
-                openForm('Lysser Open 2026');
+                alert('Dieses Turnier ist zurzeit nicht verfügbar.');
                 selectElement.value = ''; 
             }
         }
@@ -259,7 +263,7 @@
             resetFideField();
         }
 
-        // Neue Funktion für das Fidenummer-Feld
+        // Funktion fürs optionale Fidenummer-Feld
         function toggleFide(checkbox) {
             const fideInput = document.getElementById('fidenummer-input');
             if (checkbox.checked) {
