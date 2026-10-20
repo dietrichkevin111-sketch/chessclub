@@ -37,7 +37,7 @@
                 <div onclick="showTab('training')" id="nav-training" class="nav-link">Jugend & Erwachsene</div>
                 <div onclick="showTab('dokumente')" id="nav-dokumente" class="nav-link">Dokumente</div>
                 <div onclick="showTab('turnier')" id="nav-turnier" class="nav-link">Turniere</div>
-                <div onclick="showTab('links')" id="nav-links" class="nav-link">Links & Kontakte</div>
+                <div onclick="showTab('links')" id="nav-links" class="nav-link">Links & Impressum</div>
             </nav>
         </div>
         
@@ -169,7 +169,7 @@ outline-none transition">
             </div>
 	</div>
             <div id="links" class="content-section">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8">Links & Kontakt</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Links & Impressum</h2>
                 <div class="space-y-6">
                     <div class="flex flex-wrap gap-4">
                         <a href="https://www.seelandhotel.ch/de/" target="_blank" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Hotel Restaurant Weisses Kreuz</a>
@@ -177,8 +177,13 @@ outline-none transition">
 			            <a href="https://www.bernerschach.com/" target="_blank" class="px-6 py-3 bg-gray-100 rounded-lg hover:bg-gray-200 underline">Bernische Schachvereinigung</a>
                     </div>
                     <div class="p-6 bg-blue-50 rounded-lg inline-block">
-                        <p class="text-sm text-blue-600 font-bold mb-1 uppercase">E-Mail Kontakt</p>
-                        <p class="text-xl font-mono">stucki.goldbach@bluewin.ch</p>
+                        <p class="text-sm text-blue-600 font-bold mb-1 uppercase">Impressum</p>
+<ul class="space-y-2 text-gray-700">
+<li>Schachclub Lyss-Seeland</li>
+<li>Allenwil 301, 3054 Schüpfen</li>
+<li>Vereinspräsident: Victor Balli</li>
+<li>E-Mail Kontakt: victorballi@bluewin.ch</li>
+</ul> 
 		        </div>
 		    </div>
 		</div>
@@ -186,38 +191,7 @@ outline-none transition">
 	</div>
     </main>
     
-  
-              
-
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        emailjs.init("gu8W3JDXXjeiSCjPQ"); 
-
-        function sendEmail(event) {
-            event.preventDefault(); 
-            if (event.target.honeypot.value !== "") return;
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = 'Wird gesendet...';
-            emailjs.sendForm('service_8ffyw5b', 'template_rnj1opj', event.target)
-            .then(function() {
-                btn.innerText = 'Bitte überprüfen Sie Ihren Mails!';
-                btn.classList.replace('bg-blue-600', 'bg-green-600'); 
-                event.target.reset(); 
-                
-                // Formular-Zustand zurücksetzen (Fidenummer-Feld)
-                resetFideField();
-
-                setTimeout(function() {
-                    closeForm();
-                    btn.innerText = 'Verbindlich anmelden';
-                    btn.classList.replace('bg-green-600', 'bg-blue-600');
-                }, 2000);
-            }, function(error) {
-                alert('Fehler beim Senden. Bitte versuche es später erneut.');
-                btn.innerText = 'Verbindlich anmelden';
-            });
-        }
-
         function showTab(tabId) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.classList.remove('active');
@@ -233,7 +207,7 @@ outline-none transition">
                 'training': 'Jugend & Erwachsene',
                 'dokumente': 'Dokumente',
                 'turnier': 'Turniere',
-                'links': 'Kontakt & Links'
+                'links': 'Links & Impressum'
             };
             document.getElementById('page-title').innerText = titles[tabId];
             window.scrollTo(0, 0);
@@ -242,12 +216,11 @@ outline-none transition">
         function handleTurnierSelection(selectElement) {
             const auswahl = selectElement.value;
             if (auswahl === 'Lysser JGP') {
-                alert('Dieses Turnier ist zurzeit nicht verfügbar.');
-                selectElement.value = ''; 
+                openForm('Lysser JGP');
             } else if (auswahl === 'Lysser Open 2026') {
-                alert('Dieses Turnier ist zurzeit nicht verfügbar.');
-                selectElement.value = ''; 
+                openForm('Lysser Open 2026');
             }
+            selectElement.value = ''; 
         }
 
         function openForm(turnierName) {
@@ -263,7 +236,6 @@ outline-none transition">
             resetFideField();
         }
 
-        // Funktion fürs optionale Fidenummer-Feld
         function toggleFide(checkbox) {
             const fideInput = document.getElementById('fidenummer-input');
             if (checkbox.checked) {
@@ -285,13 +257,60 @@ outline-none transition">
             fideInput.classList.remove('text-gray-400', 'bg-gray-700');
             fideInput.classList.add('text-white', 'bg-gray-800');
         }
+
+        document.getElementById("turnier-form").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            if (event.target.honeypot.value !== "") return;
+            
+            const formData = new FormData(event.target);
+            
+            const vorname = formData.get('vorname').trim().toLowerCase();
+            const nachname = formData.get('nachname').trim().toLowerCase();
+            const fullName = vorname + "_" + nachname;
+
+            let angemeldeteNamen = JSON.parse(localStorage.getItem('turnierAnmeldungen')) || [];
+
+            if (angemeldeteNamen.includes(fullName)) {
+                alert("Dieser Name wurde bereits angemeldet!");
+                return; 
+            }
+
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Wird gesendet...';
+            
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(function() {
+                angemeldeteNamen.push(fullName);
+                localStorage.setItem('turnierAnmeldungen', JSON.stringify(angemeldeteNamen));
+
+                btn.innerText = 'Erfolgreich angemeldet!';
+                btn.classList.replace('bg-blue-600', 'bg-green-600'); 
+                event.target.reset(); 
+                resetFideField();
+
+                setTimeout(function() {
+                    closeForm();
+                    btn.innerText = 'Verbindlich anmelden';
+                    btn.classList.replace('bg-green-600', 'bg-blue-600');
+                }, 2000);
+            })
+            .catch(function(error) {
+                alert('Fehler beim Senden. Bitte versuchen Sie es später erneut.');
+                btn.innerText = 'Verbindlich anmelden';
+            });
+        });
     </script>
 
     <div id="formular-bereich" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
         <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-11/12 max-w-3xl relative border-t-4 border-blue-600">
             <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold leading-none">&times;</button>
             <h3 id="formular-titel" class="text-3xl font-bold mb-6 text-center text-white">Anmeldung</h3>
-            <form id="turnier-form" onsubmit="sendEmail(event)">
+            <form id="turnier-form" name="turnier_anmeldung" method="POST" data-netlify="true">
                 <input type="text" name="honeypot" style="display:none">
                 <input type="hidden" id="gewaehltes_turnier" name="gewaehltes_turnier">
                 
