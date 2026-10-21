@@ -216,10 +216,12 @@ outline-none transition">
         function handleTurnierSelection(selectElement) {
             const auswahl = selectElement.value;
             if (auswahl === 'Lysser JGP') {
-                openForm('Lysser JGP');
+                alert('Dieses Turnier ist zurzeit nicht verfügbar.');
+                selectElement.value = '';
             } else if (auswahl === 'Lysser Open 2026') {
-                openForm('Lysser Open 2026');
-            }
+                alert('Dieses Turnier ist zurzeit nicht verfügbar.');
+                selectElement.value = '';
+	    }
             selectElement.value = ''; 
         }
 
