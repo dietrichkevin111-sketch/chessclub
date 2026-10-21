@@ -264,6 +264,7 @@ outline-none transition">
             if (event.target.honeypot.value !== "") return;
             
             const formData = new FormData(event.target);
+	    formData.append("form-name", "turnier_anmeldung");
             
             const vorname = formData.get('vorname').trim().toLowerCase();
             const nachname = formData.get('nachname').trim().toLowerCase();
